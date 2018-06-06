@@ -1,4 +1,4 @@
-package org.butu.sugar.tree;
+package ru.kbakaras.sugar.tree;
 
 @SuppressWarnings("rawtypes")
 public abstract class MetaLeaf<M, V, P extends MetaNode> extends MetaNode<M, V> {

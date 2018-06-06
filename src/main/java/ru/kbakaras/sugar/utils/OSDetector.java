@@ -1,6 +1,6 @@
-package org.butu.sugar.utils;
+package ru.kbakaras.sugar.utils;
 
-import org.butu.sugar.lazy.Lazy;
+import ru.kbakaras.sugar.lazy.Lazy;
 
 public class OSDetector {
     private static Lazy<Boolean> isWinOS = Lazy.of(

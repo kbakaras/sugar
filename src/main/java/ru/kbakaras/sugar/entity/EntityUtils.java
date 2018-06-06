@@ -1,4 +1,4 @@
-package org.butu.sugar.entity;
+package ru.kbakaras.sugar.entity;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;

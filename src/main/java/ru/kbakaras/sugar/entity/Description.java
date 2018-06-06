@@ -1,4 +1,4 @@
-package org.butu.sugar.entity;
+package ru.kbakaras.sugar.entity;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

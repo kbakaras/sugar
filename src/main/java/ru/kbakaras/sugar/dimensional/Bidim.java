@@ -1,6 +1,6 @@
-package org.butu.sugar.dimensional;
+package ru.kbakaras.sugar.dimensional;
 
-import org.butu.sugar.tree.MappedTree;
+import ru.kbakaras.sugar.tree.MappedTree;
 
 import java.util.Collection;
 import java.util.HashMap;

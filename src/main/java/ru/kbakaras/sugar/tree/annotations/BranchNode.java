@@ -1,6 +1,6 @@
-package org.butu.sugar.tree.annotations;
+package ru.kbakaras.sugar.tree.annotations;
 
-import org.butu.sugar.tree.MetaNode;
+import ru.kbakaras.sugar.tree.MetaNode;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

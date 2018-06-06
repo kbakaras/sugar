@@ -1,4 +1,4 @@
-package org.butu.sugar.dates;
+package ru.kbakaras.sugar.dates;
 
 import java.time.LocalDate;
 

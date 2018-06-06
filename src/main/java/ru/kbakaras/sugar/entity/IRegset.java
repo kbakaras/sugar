@@ -1,6 +1,6 @@
-package org.butu.sugar.entity;
+package ru.kbakaras.sugar.entity;
 
-import org.butu.sugar.listeners.StateChangeListener;
+import ru.kbakaras.sugar.listeners.StateChangeListener;
 
 /**
  * Создано: kbakaras, в день: 24.11.2017.

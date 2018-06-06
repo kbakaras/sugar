@@ -1,4 +1,4 @@
-package org.butu.sugar.lazy;
+package ru.kbakaras.sugar.lazy;
 
 import java.util.function.Supplier;
 

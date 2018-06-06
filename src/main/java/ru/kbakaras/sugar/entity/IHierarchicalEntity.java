@@ -1,4 +1,4 @@
-package org.butu.sugar.entity;
+package ru.kbakaras.sugar.entity;
 
 public interface IHierarchicalEntity<E extends IEntity> extends IEntity {
 	public E getParent();

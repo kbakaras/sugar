@@ -1,6 +1,6 @@
-package org.butu.sugar.compare;
+package ru.kbakaras.sugar.compare;
 
-import org.butu.sugar.utils.ArrayUtils;
+import ru.kbakaras.sugar.utils.ArrayUtils;
 
 import java.util.Calendar;
 import java.util.Comparator;

@@ -1,4 +1,4 @@
-package org.butu.sugar.tree;
+package ru.kbakaras.sugar.tree;
 
 @SuppressWarnings("rawtypes")
 public class MetaRootSimple<C extends MetaNode> extends MetaRoot<Object, Object, C> {

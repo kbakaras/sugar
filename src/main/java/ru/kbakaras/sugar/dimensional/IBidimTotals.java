@@ -1,4 +1,4 @@
-package org.butu.sugar.dimensional;
+package ru.kbakaras.sugar.dimensional;
 
 public interface IBidimTotals<K, T> {
     T get(int index);

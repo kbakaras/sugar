@@ -1,7 +1,7 @@
-package org.butu.sugar.dates;
+package ru.kbakaras.sugar.dates;
 
-import org.butu.sugar.compare.CompareUtils;
-import org.butu.sugar.entity.EntityUtils;
+import ru.kbakaras.sugar.compare.CompareUtils;
+import ru.kbakaras.sugar.entity.EntityUtils;
 
 import java.io.Serializable;
 import java.time.LocalDate;

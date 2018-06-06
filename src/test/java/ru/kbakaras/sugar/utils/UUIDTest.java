@@ -1,4 +1,4 @@
-package org.butu.sugar.utils;
+package ru.kbakaras.sugar.utils;
 
 import org.junit.Test;
 
@@ -6,7 +6,7 @@ import java.nio.ByteBuffer;
 import java.util.UUID;
 
 /**
- * Создано: kbakaras, в день: 16.02.2018.
+ * РЎРѕР·РґР°РЅРѕ: kbakaras, РІ РґРµРЅСЊ: 16.02.2018.
  */
 public class UUIDTest {
     @Test

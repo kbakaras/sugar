@@ -1,4 +1,4 @@
-package org.butu.sugar.dimensional;
+package ru.kbakaras.sugar.dimensional;
 
 import java.util.ArrayList;
 import java.util.Collection;

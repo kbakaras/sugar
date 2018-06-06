@@ -1,6 +1,6 @@
-package org.butu.sugar.utils;
+package ru.kbakaras.sugar.utils;
 
-import org.butu.sugar.lazy.Lazy;
+import ru.kbakaras.sugar.lazy.Lazy;
 
 import java.lang.reflect.Array;
 import java.security.SecureRandom;

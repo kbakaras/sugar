@@ -1,6 +1,6 @@
-package org.butu.sugar.entity;
+package ru.kbakaras.sugar.entity;
 
-import org.butu.sugar.compare.Equivalence;
+import ru.kbakaras.sugar.compare.Equivalence;
 
 /**
  * Маркер-интерфейс для Detail-сущностей

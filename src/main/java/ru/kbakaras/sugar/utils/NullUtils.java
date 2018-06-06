@@ -1,4 +1,4 @@
-package org.butu.sugar.utils;
+package ru.kbakaras.sugar.utils;
 
 import java.math.BigDecimal;
 import java.util.function.Function;

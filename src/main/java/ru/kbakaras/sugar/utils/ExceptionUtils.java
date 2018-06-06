@@ -1,4 +1,4 @@
-package org.butu.sugar.utils;
+package ru.kbakaras.sugar.utils;
 
 public class ExceptionUtils {
     public static String getMessage(Throwable e) {

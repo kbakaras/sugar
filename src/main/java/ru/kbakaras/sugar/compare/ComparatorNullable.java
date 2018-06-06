@@ -1,4 +1,4 @@
-package org.butu.sugar.compare;
+package ru.kbakaras.sugar.compare;
 
 import java.io.Serializable;
 import java.util.Comparator;

@@ -1,4 +1,4 @@
-package org.butu.sugar.entity;
+package ru.kbakaras.sugar.entity;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import java.util.List;
  */
 public abstract class MandatoryInitializer<E extends IEntity> {
 	
-	private MandatoryInitializerCustomizable<E, Description> initializer; 
+	private MandatoryInitializerCustomizable<E, Description> initializer;
 	
     public MandatoryInitializer(Class<?> clazz, String patternStr) {
     	initializer = new MandatoryInitializerCustomizable<E, Description>(clazz, patternStr, Description.class) {

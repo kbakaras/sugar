@@ -1,4 +1,4 @@
-package org.butu.sugar.dimensional;
+package ru.kbakaras.sugar.dimensional;
 
 /**
  * Создано: kbakaras, в день: 09.02.2018.

@@ -1,4 +1,4 @@
-package org.butu.sugar.listeners;
+package ru.kbakaras.sugar.listeners;
 
 /**
  * Интерфейс доступа к коллекции слушателей.

@@ -1,4 +1,4 @@
-package org.butu.sugar.utils;
+package ru.kbakaras.sugar.utils;
 
 import java.util.Collections;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package org.butu.sugar.tree;
+package ru.kbakaras.sugar.tree;
 
 import java.util.Iterator;
 

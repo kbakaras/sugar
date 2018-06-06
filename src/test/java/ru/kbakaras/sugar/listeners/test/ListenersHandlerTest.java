@@ -1,18 +1,15 @@
-package org.butu.sugar.listeners.test;
+package ru.kbakaras.sugar.listeners.test;
 
-import org.butu.sugar.listeners.IListeners;
-import org.butu.sugar.listeners.ListenersHandler;
-import org.butu.sugar.listeners.ListenersParent;
 import org.junit.Assert;
 import org.junit.Test;
+import ru.kbakaras.sugar.listeners.IListeners;
+import ru.kbakaras.sugar.listeners.ListenersHandler;
+import ru.kbakaras.sugar.listeners.ListenersParent;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Proxy;
 import java.util.List;
 
-/**
- * Создано: kbakaras, в день: 30.11.2017.
- */
 public class ListenersHandlerTest {
     private boolean notified = false;
     private boolean parentCreated = false;
@@ -30,16 +27,16 @@ public class ListenersHandlerTest {
         ListenerTest listener = this::contentChanged;
 
         listeners.addListener(listener);
-        Assert.assertTrue("Добавление слушателя", list.size() == 1);
+        Assert.assertTrue("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", list.size() == 1);
 
         notifier.contentChanged();
-        Assert.assertTrue("Вызов слушателей", notified);
+        Assert.assertTrue("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", notified);
 
         listeners.removeListener(this::contentChanged);
-        Assert.assertFalse("Удаление недобавленного слушателя", list.size() == 0);
+        Assert.assertFalse("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", list.size() == 0);
 
         listeners.removeListener(listener);
-        Assert.assertTrue("Удаление добавленного слушателя", list.size() == 0);
+        Assert.assertTrue("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", list.size() == 0);
     }
 
     ListenerTest notifier1 = null;
@@ -63,11 +60,11 @@ public class ListenersHandlerTest {
 
         listeners.addListener(listener);
 
-        Assert.assertTrue("Подключение родительского слушателя", notifier1 == notifier);
+        Assert.assertTrue("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", notifier1 == notifier);
 
         listeners.removeListener(listener);
 
-        Assert.assertTrue("Отключение родительского слушателя", notifier1 == null);
+        Assert.assertTrue("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", notifier1 == null);
     }
 
     private void contentChanged() {

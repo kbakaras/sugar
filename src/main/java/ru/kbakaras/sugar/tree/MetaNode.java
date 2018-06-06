@@ -1,10 +1,10 @@
-package org.butu.sugar.tree;
+package ru.kbakaras.sugar.tree;
 
-import org.butu.sugar.lazy.MapCache;
-import org.butu.sugar.tree.annotations.BranchNode;
-import org.butu.sugar.tree.annotations.LeafNode;
-import org.butu.sugar.tree.annotations.RootNode;
-import org.butu.sugar.tree.annotations.RootNodeSimple;
+import ru.kbakaras.sugar.lazy.MapCache;
+import ru.kbakaras.sugar.tree.annotations.BranchNode;
+import ru.kbakaras.sugar.tree.annotations.LeafNode;
+import ru.kbakaras.sugar.tree.annotations.RootNode;
+import ru.kbakaras.sugar.tree.annotations.RootNodeSimple;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;

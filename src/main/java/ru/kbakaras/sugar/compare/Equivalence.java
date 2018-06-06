@@ -1,4 +1,4 @@
-package org.butu.sugar.compare;
+package ru.kbakaras.sugar.compare;
 
 public interface Equivalence {
     boolean equivalent(Object obj);

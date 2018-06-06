@@ -1,7 +1,7 @@
-package org.butu.sugar.utils;
+package ru.kbakaras.sugar.utils;
 
-import org.butu.sugar.lazy.Lazy;
-import org.butu.sugar.lazy.MapCache;
+import ru.kbakaras.sugar.lazy.Lazy;
+import ru.kbakaras.sugar.lazy.MapCache;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;

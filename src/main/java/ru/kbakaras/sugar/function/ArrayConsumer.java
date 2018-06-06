@@ -1,4 +1,4 @@
-package org.butu.sugar.function;
+package ru.kbakaras.sugar.function;
 
 import java.util.Objects;
 
