@@ -1,5 +1,8 @@
 package ru.kbakaras.sugar.utils;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 public class ExceptionUtils {
     public static String getMessage(Throwable e) {
         String msg = null;
@@ -12,6 +15,12 @@ public class ExceptionUtils {
 
         if (msg == null) msg = e.toString();
         return msg;
+    }
+
+    public static String getStackTrace(Throwable e) {
+        StringWriter sw = new StringWriter();
+        e.printStackTrace(new PrintWriter(sw));
+        return sw.toString();
     }
 
     /**
