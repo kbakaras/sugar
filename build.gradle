@@ -19,11 +19,11 @@ task sourceJar(type: Jar) {
 }
 
 publishing {
-    repositories {
+    /*repositories {
         maven {
             url "http://apps-srv-1/nexus/content/repositories/kbakaras"
         }
-    }
+    }*/
     publications {
         mavenJava(MavenPublication) {
             from components.java
