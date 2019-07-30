@@ -22,6 +22,7 @@ publishing {
     repositories {
         maven {
             url "http://apps-srv-1/nexus/content/repositories/kbakaras"
+            name "Glance"
         }
     }
     publications {
