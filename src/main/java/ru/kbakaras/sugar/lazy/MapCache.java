@@ -11,10 +11,13 @@ import java.util.function.Function;
  * Карта, значения которой заполняются лениво при первом запросе.
  * За заполнение значений ответчает функция, передаваемая в параметре конструктора.
  */
-public class MapCache<K, V> {
+@SuppressWarnings("unused")
+public class MapCache<K, V> implements Iterable<Map.Entry<K, V>> {
+
     private Function<K, V> function;
     private Map<K, V> map = new HashMap<>();
 
+    @SuppressWarnings("WeakerAccess")
     public MapCache(Function<K, V> function) {
         this.function = function;
     }
@@ -60,13 +63,7 @@ public class MapCache<K, V> {
      * Удаляет из кэша все ключи, значение для которых <b>null</b>.
      */
     public void removeNulls() {
-        Iterator<Entry<K, V>> iterator = map.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Entry<K, V> entry = iterator.next();
-            if (entry.getValue() == null) {
-                iterator.remove();
-            }
-        }
+        map.entrySet().removeIf(entry -> entry.getValue() == null);
     }
 
     /**
@@ -83,7 +80,15 @@ public class MapCache<K, V> {
         return map.isEmpty();
     }
 
+
+    @Override
+    public Iterator<Entry<K, V>> iterator() {
+        return map.entrySet().iterator();
+    }
+
+
     public static <K, V> MapCache<K, V> of(Function<K, V> function) {
         return new MapCache<>(function);
     }
+
 }
