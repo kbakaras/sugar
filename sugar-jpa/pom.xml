@@ -17,7 +17,7 @@
         <dependency>
             <groupId>ru.kbakaras.sugar</groupId>
             <artifactId>sugar-core</artifactId>
-            <version>${revision-sugar}</version>
+            <version>1.4.0</version>
         </dependency>
 
 
