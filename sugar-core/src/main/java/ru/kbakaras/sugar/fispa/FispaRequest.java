@@ -2,12 +2,9 @@ package ru.kbakaras.sugar.fispa;
 
 import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.function.Function;
 import java.util.function.ToLongFunction;
-import java.util.stream.Collector;
 
 /**
  * Базовый класс для объектов Fispa - объектов, позволяющих формировать запросы
@@ -168,27 +165,6 @@ public abstract class FispaRequest<F, S> {
             return limit;
         }
 
-    }
-
-
-    public static <T> Collector<T, List<T>, T> composeCollector(Function<List<T>, T> finalizer) {
-        return Collector.of(
-                ArrayList::new,
-                List::add,
-                (left, right) -> {
-                    left.addAll(right);
-                    return left;
-                },
-                list -> {
-                    if (list.size() == 1) {
-                        return list.get(0);
-                    } else if (list.size() > 1) {
-                        return finalizer.apply(list);
-                    } else {
-                        return null;
-                    }
-                }
-        );
     }
 
 }

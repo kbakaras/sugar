@@ -7,7 +7,7 @@
     <groupId>ru.kbakaras.sugar</groupId>
     <artifactId>sugar</artifactId>
     <packaging>pom</packaging>
-    <version>1.4.1</version>
+    <version>1.4.2</version>
 
     <modules>
         <module>sugar-core</module>
