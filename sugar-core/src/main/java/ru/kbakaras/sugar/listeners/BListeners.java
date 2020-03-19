@@ -14,6 +14,7 @@ import java.util.Set;
  *
  * @param <L> Класс для слушателей.
  */
+@Deprecated
 public class BListeners<L> {
     private Set<L> listeners;
     private Method[] methods;
