@@ -3,6 +3,7 @@ package ru.kbakaras.sugar.controller;
 import ru.kbakaras.sugar.listeners.Listeners;
 import ru.kbakaras.sugar.listeners.Observatory;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -65,7 +66,7 @@ public class ElementSetController<E> {
 
     }
 
-    public void addAll(Consumer<Set<E>> excludedListener, Set<E> elements) {
+    public void addAll(Consumer<Set<E>> excludedListener, Collection<E> elements) {
         if (modelModifiable.addAll(elements)) {
             notification.accept(excludedListener);
         }
@@ -75,6 +76,21 @@ public class ElementSetController<E> {
         if (!modelModifiable.isEmpty()) {
             modelModifiable.clear();
             notification.accept(excludedListener);
+        }
+    }
+
+    /**
+     * Полностью замещает старый набор значений новым.
+     * @param excludedListener Слушатель, который должен быть исключён из оповещения
+     * @param elements         Новый набор значений
+     */
+    public void reset(Consumer<Set<E>> excludedListener, Collection<E> elements) {
+        if (elements != null && !elements.isEmpty()) {
+            modelModifiable.clear();
+            modelModifiable.addAll(elements);
+            notification.accept(excludedListener);
+        } else {
+            clear(excludedListener);
         }
     }
 
