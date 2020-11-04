@@ -40,20 +40,21 @@ public class PackageResolver {
     }
 
 
-    public void forEach(String basePackage, Class annotationClass,
-                            BiConsumer<Class, Map<String, Object>> consumer) {
+    public <B, A> void forEach(String basePackage, Class<A> annotationClass,
+                            BiConsumer<Class<B>, Map<String, Object>> consumer) {
 
         String type = annotationClass.getName();
 
         try {
-            Set<Class> included = new HashSet<>();
+            Set<Class<B>> included = new HashSet<>();
             for (Resource resource: resourcePatternResolver.getResources(searchPath(basePackage))) {
                 if (resource.isReadable()) {
                     MetadataReader metadataReader = metadataReaderFactory.getMetadataReader(resource);
                     AnnotationMetadata am = metadataReader.getAnnotationMetadata();
 
                     if (am.hasAnnotation(type)) {
-                        Class clazz = Class.forName(
+                        @SuppressWarnings("unchecked")
+                        Class<B> clazz = (Class<B>) Class.forName(
                                 metadataReader.getClassMetadata().getClassName(),
                                 true, classLoader
                         );
