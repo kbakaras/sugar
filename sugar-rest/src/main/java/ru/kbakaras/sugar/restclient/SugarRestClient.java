@@ -10,6 +10,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpEntityEnclosingRequest;
 import org.apache.http.HttpResponse;
+import org.apache.http.ParseException;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
@@ -23,12 +24,14 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicHeader;
 
 import java.io.Closeable;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.MessageFormat;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
@@ -76,7 +79,11 @@ public class SugarRestClient implements Closeable {
 
     private void setEntity(HttpEntityEnclosingRequest request, Object entity) {
 
-        if (entity instanceof byte[]) {
+        if (entity instanceof HttpEntity) {
+
+            request.setEntity((HttpEntity) entity);
+
+        } else if (entity instanceof byte[]) {
 
             request.setHeader("Content-Type", ContentType.APPLICATION_OCTET_STREAM.getMimeType());
             request.setEntity(new ByteArrayEntity((byte[]) entity));
@@ -93,7 +100,23 @@ public class SugarRestClient implements Closeable {
         }
     }
 
-    private <R extends HttpRequestBase> Response request(Function<URI, R> requestProducer, String url, Object entity) throws URISyntaxException, IOException {
+    private BasicHeader parseHeader(String str) {
+        int colon = str.indexOf(':');
+        if (colon == -1) {
+            throw new ParseException("Invalid header: " + str);
+        }
+        String s = str.substring(0, colon).trim();
+        if (s.isEmpty()) {
+            throw new ParseException("Invalid header: " + str);
+        }
+
+        return new BasicHeader(s, str.substring(colon + 1, str.length()));
+    }
+
+    private <R extends HttpRequestBase> Response request(Function<URI, R> requestProducer,
+                                                         String url,
+                                                         Object entity,
+                                                         String... headers) throws URISyntaxException, IOException {
 
         R request = requestProducer.apply(new URI(url));
         request.setConfig(requestConfig);
@@ -104,6 +127,12 @@ public class SugarRestClient implements Closeable {
             } else {
                 throw EXCEPTION_EntityNotSupported.apply(request.getMethod());
             }
+        }
+
+        if (headers.length > 0) {
+            Arrays.stream(headers)
+                    .map(this::parseHeader)
+                    .forEach(request::setHeader);
         }
 
         identity.set(request);
@@ -120,24 +149,24 @@ public class SugarRestClient implements Closeable {
     }
 
 
-    public Response get(String url) throws IOException, URISyntaxException {
-        return request(HttpGet::new, url, null);
+    public Response get(String url, String... headers) throws IOException, URISyntaxException {
+        return request(HttpGet::new, url, null, headers);
     }
 
-    public Response post(String url, Object entity) throws IOException, URISyntaxException {
-        return request(HttpPost::new, url, entity);
+    public Response post(String url, Object entity, String... headers) throws IOException, URISyntaxException {
+        return request(HttpPost::new, url, entity, headers);
     }
 
-    public Response put(String url, Object entity) throws IOException, URISyntaxException {
-        return request(HttpPut::new, url, entity);
+    public Response put(String url, Object entity, String... headers) throws IOException, URISyntaxException {
+        return request(HttpPut::new, url, entity, headers);
     }
 
-    public Response patch(String url, Object entity) throws IOException, URISyntaxException {
-        return request(HttpPatch::new, url, entity);
+    public Response patch(String url, Object entity, String... headers) throws IOException, URISyntaxException {
+        return request(HttpPatch::new, url, entity, headers);
     }
 
-    public Response delete(String url) throws IOException, URISyntaxException {
-        return request(HttpDelete::new, url, null);
+    public Response delete(String url, String... headers) throws IOException, URISyntaxException {
+        return request(HttpDelete::new, url, null, headers);
     }
 
 
@@ -149,6 +178,10 @@ public class SugarRestClient implements Closeable {
         public Response(HttpResponse httpResponse) throws IOException {
             this.httpResponse = httpResponse;
             this.entity = IOUtils.toByteArray(httpResponse.getEntity().getContent());
+        }
+
+        public byte[] getEntityData() {
+            return entity;
         }
 
         public <E> E getEntity(Class<E> entityClass) {
