@@ -5,11 +5,12 @@ import ru.kbakaras.sugar.entity.IEntity;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
+import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 @MappedSuperclass
-public abstract class BaseEntity<ID> implements IEntity<ID> {
+public abstract class BaseEntity<ID extends Serializable> implements IEntity<ID> {
     @Id
     protected ID id;
 
@@ -40,6 +41,8 @@ public abstract class BaseEntity<ID> implements IEntity<ID> {
     public boolean equals(Object obj) {
         if (super.equals(obj)) {
             return true;
+        } else if (obj == null) {
+            return false;
         } else {
             if (this.getClass().equals(obj.getClass())) {
                 return this.getId().equals(((BaseEntity) obj).getId());

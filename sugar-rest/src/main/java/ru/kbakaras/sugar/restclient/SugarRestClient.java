@@ -9,6 +9,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpEntityEnclosingRequest;
+import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
 import org.apache.http.client.config.RequestConfig;
@@ -31,7 +32,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.MessageFormat;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
@@ -81,17 +81,18 @@ public class SugarRestClient implements Closeable {
 
         if (entity instanceof HttpEntity) {
 
+            //request.setHeader(((HttpEntity) entity).getContentType());
             request.setEntity((HttpEntity) entity);
 
         } else if (entity instanceof byte[]) {
 
-            request.setHeader("Content-Type", ContentType.APPLICATION_OCTET_STREAM.getMimeType());
+            request.setHeader(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_OCTET_STREAM.getMimeType());
             request.setEntity(new ByteArrayEntity((byte[]) entity));
 
         } else {
             try {
 
-                request.setHeader("Content-Type", ContentType.APPLICATION_JSON.getMimeType());
+                request.setHeader(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.getMimeType());
                 request.setEntity(new StringEntity(objectMapper.writeValueAsString(entity), ContentType.APPLICATION_JSON));
 
             } catch (JsonProcessingException e) {
@@ -129,10 +130,8 @@ public class SugarRestClient implements Closeable {
             }
         }
 
-        if (headers.length > 0) {
-            Arrays.stream(headers)
-                    .map(this::parseHeader)
-                    .forEach(request::setHeader);
+        for (String header : headers) {
+            request.setHeader(parseHeader(header));
         }
 
         identity.set(request);
