@@ -7,7 +7,7 @@
     <parent>
         <groupId>ru.kbakaras.sugar</groupId>
         <artifactId>sugar</artifactId>
-        <version>1.5.0</version>
+        <version>1.5.1</version>
     </parent>
 
     <artifactId>sugar-jpa</artifactId>
@@ -17,7 +17,7 @@
         <dependency>
             <groupId>ru.kbakaras.sugar</groupId>
             <artifactId>sugar-core</artifactId>
-            <version>1.5.0</version>
+            <version>1.5.1</version>
         </dependency>
 
 

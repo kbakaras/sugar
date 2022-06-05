@@ -2,24 +2,16 @@ package ru.kbakaras.sugar.restclient;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.apache.commons.io.IOUtils;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpEntityEnclosingRequest;
-import org.apache.http.HttpHeaders;
-import org.apache.http.HttpResponse;
-import org.apache.http.ParseException;
+import org.apache.http.*;
 import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPatch;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.*;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
@@ -81,8 +73,11 @@ public class SugarRestClient implements Closeable {
 
         if (entity instanceof HttpEntity) {
 
-            //request.setHeader(((HttpEntity) entity).getContentType());
             request.setEntity((HttpEntity) entity);
+
+            if (entity instanceof UrlEncodedFormEntity) {
+                request.setHeader(((HttpEntity) entity).getContentType());
+            }
 
         } else if (entity instanceof byte[]) {
 
@@ -181,6 +176,14 @@ public class SugarRestClient implements Closeable {
 
         public byte[] getEntityData() {
             return entity;
+        }
+
+        public JsonNode getEntityJson() {
+            try {
+                return objectMapper.readTree(entity);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         public <E> E getEntity(Class<E> entityClass) {

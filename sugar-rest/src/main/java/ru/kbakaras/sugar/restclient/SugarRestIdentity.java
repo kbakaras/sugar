@@ -33,4 +33,16 @@ public interface SugarRestIdentity {
      */
     boolean refresh(HttpRequestBase request);
 
+
+    @SuppressWarnings("unused")
+    SugarRestIdentity NO_IDENTITY = new SugarRestIdentity() {
+        @Override
+        public void set(HttpRequestBase request) {}
+
+        @Override
+        public boolean refresh(HttpRequestBase request) {
+            return false;
+        }
+    };
+
 }
