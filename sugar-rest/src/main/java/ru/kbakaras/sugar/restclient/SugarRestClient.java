@@ -171,7 +171,9 @@ public class SugarRestClient implements Closeable {
 
         public Response(HttpResponse httpResponse) throws IOException {
             this.httpResponse = httpResponse;
-            this.entity = IOUtils.toByteArray(httpResponse.getEntity().getContent());
+            this.entity = httpResponse.getEntity() != null
+                    ? IOUtils.toByteArray(httpResponse.getEntity().getContent())
+                    : null;
         }
 
         public byte[] getEntityData() {
